@@ -13,7 +13,7 @@ app.post("/create-user", (req, res) => {
   res.redirect(302, "/users");
 });
 
-app.use("/users", (req, res, next) => {
+app.get("/users", (req, res) => {
   let output = "";
   users.forEach(
     (username, index) => (output += `<li>User ${index + 1}: ${username}</li>`)
@@ -21,7 +21,7 @@ app.use("/users", (req, res, next) => {
   res.send(`<ul>${output}</ul>`);
 });
 
-app.use("/", (req, res, next) => {
+app.use("/", (req, res) => {
   res.send(`
     <form action='/create-user' method='POST'>
       <input type='text' name='username'/>
